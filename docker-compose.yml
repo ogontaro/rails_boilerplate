@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  debug:
+    container_name: ruby_debug
+    build:
+      dockerfile: ./containers/ruby/Dockerfile
+      context: ./
+    volumes:
+      - ./:/app/:cached
+    depends_on:
+      - db
+
+  server:
+    container_name: ruby_server
+    build:
+      dockerfile: ./containers/ruby/Dockerfile
+      context: ./
+    command: bundle exec rails s
+    volumes:
+      - ./:/app/:cached
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: ruby_db
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - 3306:3306
+    volumes:
+      - ./containers/mysql/my.cnf:/etc/mysql/my.cnf:ro
+      - db:/var/lib/mysql
+
+volumes:
+  db:
