@@ -8,6 +8,8 @@ Railsのboilerplate
 # 利用する際に変更するところ
 ## docker-compose.yml
 - コンテナ名をアプリに変更する
+## config/dababase.yml
+- データベース名を自身のプロジェクト名に変える
 
 # 設定したところ
 ## DB
