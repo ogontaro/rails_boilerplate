@@ -38,3 +38,7 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
 - rubocop-rspecを利用するように修正
 - NewCops: enable 
 - Bundler/OrderedGems を有効化
+
+## dotenv
+- .env.exampleを追加
+- config/application.rbをdotenvを読み込むように設定した
