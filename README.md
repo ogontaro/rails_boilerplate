@@ -23,6 +23,7 @@ config/database.yml
 ## rspec
 `rails g rspec:install` を実行
 - supportディレクトリを有効化
+- rakeタスクをテストできるようにspec/support/task.rbを追加
 
 ## annotate
 `rails g annotate:install` を実行
