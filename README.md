@@ -8,6 +8,7 @@ Railsのboilerplate
 # 利用する際に変更するところ
 ## docker-compose.yml
 - コンテナ名をアプリに変更する
+
 ## config/dababase.yml
 - データベース名を自身のプロジェクト名に変える
 
@@ -20,6 +21,8 @@ PW:password
 config/database.yml
 
 ## rspec
+`rails g rspec:install` を実行
+- supportディレクトリを有効化
 
 ## annotate
 `rails g annotate:install` を実行
