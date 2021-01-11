@@ -41,4 +41,11 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
 
 ## dotenv
 - .env.exampleを追加
-- config/application.rbをdotenvを読み込むように設定した
+- `config/application.rb` をdotenvを読み込むように設定した
+
+## config
+`bundle exec rails g config:install` を実行済み
+
+## sentry
+- .env.example `SENTRY_DSN='your_api_key'` を追加
+- `config/initializer/sentry.rb` を追加

@@ -24,7 +24,8 @@ gem "puma", "~> 5.0"
 gem "puma_worker_killer" # pumaが規定値以上のメモリにならないようにするライブラリ
 gem "pundit" # 権限管理
 gem "ransack" # 検索ツール
-gem "sentry-raven" # sentryにエラー情報を通知するためのライブラリ
+gem "sentry-rails" # sentryにエラー情報を通知するためのライブラリ
+gem "sentry-ruby" # 同上
 gem "slack-notifier" # Slackに通知するためのライブラリ
 gem "transaction_retry" # MySQLでロックがかかって更新に失敗したときに自動でリトライするライブラリ
 
