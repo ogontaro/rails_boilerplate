@@ -284,3 +284,6 @@ Performance/DeletePrefix:
 
 Performance/DeleteSuffix:
   Enabled: true
+
+Bundler/OrderedGems:
+  Enabled: true

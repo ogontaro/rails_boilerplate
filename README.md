@@ -21,6 +21,9 @@ config/database.yml
 
 ## rspec
 
+## annotate
+`rails g annotate:install` を実行
+
 ## rubocop
 .rubocop.ymlのベースはrailsプロジェクトのやつ
 https://github.com/rails/rails/blob/master/.rubocop.yml
@@ -29,4 +32,5 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
 - rubyのバージョン
 - railsのバージョン
 - rubocop-rspecを利用するように修正
-- NewCops: enable
+- NewCops: enable 
+- Bundler/OrderedGems を有効化
