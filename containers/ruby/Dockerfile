@@ -16,7 +16,7 @@ RUN wget -q https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VE
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
-ENV APP_HOME /app
+ENV APP_HOME /root/app
 WORKDIR ${APP_HOME}
 
 COPY Gemfile* ./

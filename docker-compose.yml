@@ -18,7 +18,7 @@ services:
       context: ./
     command: bundle exec rails s
     volumes:
-      - ./:/app/:cached
+      - ./:/root/app/:cached
     depends_on:
       - db
 
