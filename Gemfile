@@ -40,7 +40,7 @@ group :development, :test do
   gem "dotenv-rails" # .envファイルで環境変数を使うツール
   gem "rspec_junit_formatter" # rspecのテスト結果を整形するツール。主にCIでテストの結果を表示するさいに使う
   gem "rspec-mocks" # rspecのモック
-  gem "rspec-rails", "~> 3.8" # Rubyのテストライブラリ
+  gem "rspec-rails" # Rubyのテストライブラリ
   gem "ruby-debug-ide" # Intellij ideaがデバッグで使うライブラリ
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

@@ -23,6 +23,7 @@ COPY Gemfile* ./
 
 RUN bundle install --jobs 4
 RUN mkdir tmp
+COPY . .
 
 ARG IMAGE_VERSION
 ENV IMAGE_VERSION ${IMAGE_VERSION}
