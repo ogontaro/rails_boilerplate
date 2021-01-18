@@ -1,0 +1,80 @@
+# ------------------------------builder layer------------------------------
+FROM public.ecr.aws/lambda/ruby:2.7 as builder
+
+ENV GEM_HOME=/usr/local/bundle \
+    BUNDLE_SILENCE_ROOT_WARNING=1 \
+    BUNDLE_JOBS=4 \
+    BUNDLE_RETRY=3
+ENV BUNDLE_PATH ${GEM_HOME}
+ENV BUNDLE_APP_CONFIG=${BUNDLE_PATH} \
+    BUNDLE_BIN=${BUNDLE_PATH}/bin
+ENV PATH /app/bin:${BUNDLE_BIN}:$PATH
+RUN mkdir ${GEM_HOME}
+
+WORKDIR ${LAMBDA_TASK_ROOT}
+
+# install cmake,make,gcc,glibc-headers,openssl-devel,readline-devel,zlib-devel package for build gem libraries
+# install git package for with by private gitlab repository
+RUN yum update -y && \
+    yum install -y git mysql-devel cmake make gcc glibc-headers openssl-devel readline-devel zlib-devel && \
+    rm -rf /var/cache/yum/* && \
+    yum clean all
+
+COPY Gemfile* ./
+ARG WITH_GITLAB_TOKEN
+RUN bundle config https://gitlab.ogontaro.com/ogontaro/ruby-with ${WITH_GITLAB_TOKEN}
+RUN bundle config set --local without 'test development'
+RUN bundle install
+
+# ------------------------------Main docker image layer------------------------------
+FROM public.ecr.aws/lambda/ruby:2.7
+
+ENV LANG="C.UTF-8" \
+    RAILS_ENV="production" \
+    RAILS_LOG_TO_STDOUT="true" \
+    TZ="Asia/Tokyo"
+
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+ENV GEM_HOME=/usr/local/bundle \
+    BUNDLE_SILENCE_ROOT_WARNING=1
+ENV BUNDLE_PATH ${GEM_HOME}
+ENV BUNDLE_APP_CONFIG=${BUNDLE_PATH} \
+    BUNDLE_BIN=${BUNDLE_PATH}/bin
+ENV PATH /app/bin:${BUNDLE_BIN}:$PATH
+RUN mkdir ${GEM_HOME}
+
+# install shadow-utils package for useradd command
+# install mysql-devel package for mysql2 gem
+RUN yum update -y && \
+    yum install -y shadow-utils mysql-devel && \
+    rm -rf /var/cache/yum/* && \
+    yum clean all
+
+# delete unused locale
+RUN localedef --list-archive | egrep --invert-match --ignore-case "^(ja|en_US)" | xargs localedef --delete-from-archive && \
+    mv --force /usr/lib/locale/locale-archive{,.tmpl} && \
+    /usr/sbin/build-locale-archive --verbose
+
+WORKDIR ${LAMBDA_TASK_ROOT}
+RUN ln -s /tmp ${LAMBDA_TASK_ROOT}/tmp
+RUN ln -s /tmp ${LAMBDA_TASK_ROOT}/log
+
+COPY . .
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+
+ENV USER_NAME sbx_user1051
+ENV USER_HOME /home/${USER_NAME}
+RUN /usr/sbin/groupadd -g 990 lambda
+RUN /usr/sbin/useradd ${USER_NAME} -u 993 -g 990 -d ${USER_HOME} && chown ${USER_NAME}:lambda -R ${USER_HOME}
+RUN chown -R ${USER_NAME}:lambda $GEM_HOME
+RUN chown -R ${USER_NAME}:lambda ${LAMBDA_TASK_ROOT}/*
+
+USER ${USER_NAME}
+
+EXPOSE 8080
+
+COPY ./containers/lambda/entrypoint.sh /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["app.App::Handler.process"]

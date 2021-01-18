@@ -1,16 +1,6 @@
 version: "3.7"
 
 services:
-  debug:
-    container_name: ruby_boilerplate_debug
-    build:
-      dockerfile: ./containers/ruby/Dockerfile
-      context: ./
-    volumes:
-      - ./containers/ruby/entrypoint.sh:/entrypoint.sh:ro
-    depends_on:
-      - db
-
   server:
     container_name: ruby_boilerplate_server
     build:
@@ -26,7 +16,7 @@ services:
   lambda:
     container_name: ruby_boilerplate_lambda
     build:
-      dockerfile: ./containers/lambda/Dockerfile
+      dockerfile: ./containers/lambda/Dockerfile.production
       context: ./
     command: "app.App::Handler.process"
     volumes:
