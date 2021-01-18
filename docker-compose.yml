@@ -2,29 +2,30 @@ version: "3.7"
 
 services:
   debug:
-    container_name: ruby_debug
+    container_name: ruby_boilerplate_debug
     build:
       dockerfile: ./containers/ruby/Dockerfile
       context: ./
     volumes:
-      - ./:/app/:cached
+      - ./containers/ruby/entrypoint.sh:/entrypoint.sh:ro
     depends_on:
       - db
 
   server:
-    container_name: ruby_server
+    container_name: ruby_boilerplate_server
     build:
       dockerfile: ./containers/ruby/Dockerfile
       context: ./
     command: bundle exec rails s
     volumes:
       - ./:/root/app/:cached
+      - ./containers/ruby/entrypoint.sh:/entrypoint.sh:ro
     depends_on:
       - db
 
   db:
     image: mysql:5.7
-    container_name: ruby_db
+    container_name: ruby_boilerplate_db
     environment:
       MYSQL_ROOT_PASSWORD: password
       TZ: Asia/Tokyo

@@ -49,3 +49,9 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
 ## sentry
 - .env.example `SENTRY_DSN='your_api_key'` を追加
 - `config/initializer/sentry.rb` を追加
+
+## ridgepole
+- Schemafileを追加
+  - 使いやすいようにdb/schemasディレクトリからschemaファイルを読み取れるように
+- lib/tasks/ridgepole.rakeを追加
+  - annotationを読み取りつつ `bundle exec rails db:apply` でマイグレーションが実行できるように

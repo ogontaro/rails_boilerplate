@@ -1,0 +1,4 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+Dir[File.join(File.expand_path('./schemas', __dir__), '**', '*.schema')].each { |f| require f }
+

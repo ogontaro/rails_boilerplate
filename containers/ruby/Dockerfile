@@ -27,6 +27,4 @@ RUN mkdir tmp
 ARG IMAGE_VERSION
 ENV IMAGE_VERSION ${IMAGE_VERSION}
 
-COPY ./containers/ruby/entrypoint.sh /entrypoint.sh
-
 ENTRYPOINT ["/entrypoint.sh"]

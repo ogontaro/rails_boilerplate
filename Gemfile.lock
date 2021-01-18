@@ -1124,6 +1124,7 @@ GEM
     debase-ruby_core_source (0.10.11)
     deep_merge (1.2.1)
     diff-lcs (1.4.4)
+    diffy (3.4.0)
     docile (1.3.4)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -1306,6 +1307,9 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.0.3)
     rexml (3.2.4)
+    ridgepole (0.9.0.beta)
+      activerecord (>= 5.1, < 6.2)
+      diffy
     rspec-core (3.9.3)
       rspec-support (~> 3.9.3)
     rspec-expectations (3.9.4)
@@ -1429,6 +1433,7 @@ DEPENDENCIES
   pundit
   rails (~> 6.1.1)
   ransack
+  ridgepole (>= 0.9.0.beta)
   rspec-mocks
   rspec-rails (~> 3.8)
   rspec_junit_formatter
