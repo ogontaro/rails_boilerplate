@@ -8,6 +8,7 @@ ruby "2.7.2"
 gem "rails", "~> 6.1.1"
 
 gem "active_hash" # yamlやcsvをActiveRecordっぽく使えるようにするライブラリ
+gem "active_interaction", "~> 4.0" # 散らばるビジネスロジックをまとめる場所を提供するライブラリ
 gem "activerecord-import" # BulkImportなど、一気にインポート処理をするライブラリ
 gem "aws-sdk" # AWSのクライアントライブラリ
 gem "bootsnap", ">= 1.4.4", require: false

@@ -55,3 +55,11 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
   - 使いやすいようにdb/schemasディレクトリからschemaファイルを読み取れるように
 - lib/tasks/ridgepole.rakeを追加
   - annotationを読み取りつつ `bundle exec rails db:apply` でマイグレーションが実行できるように
+
+## factory_bot
+- config/initializer/factory_bot.rb
+  - Rails全体でFactoryBotのコマンドを全体で使えるように
+
+## ActiveInteractions
+- config/application.rb
+  - app/interactionsのディレクトリ読み取るようにした

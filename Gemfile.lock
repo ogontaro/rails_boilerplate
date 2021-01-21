@@ -41,6 +41,8 @@ GEM
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
     active_hash (3.1.0)
       activesupport (>= 5.0.0)
+    active_interaction (4.0.0)
+      activemodel (>= 5, < 7)
     active_record_query_trace (1.8)
     activejob (6.1.1)
       activesupport (= 6.1.1)
@@ -1407,6 +1409,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_hash
+  active_interaction (~> 4.0)
   active_record_query_trace
   activerecord-import
   annotate
@@ -1435,7 +1438,7 @@ DEPENDENCIES
   ransack
   ridgepole (>= 0.9.0.beta)
   rspec-mocks
-  rspec-rails (~> 3.8)
+  rspec-rails
   rspec_junit_formatter
   rubocop
   rubocop-inflector
