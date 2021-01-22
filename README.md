@@ -61,5 +61,4 @@ https://github.com/rails/rails/blob/master/.rubocop.yml
   - Rails全体でFactoryBotのコマンドを全体で使えるように
 
 ## ActiveInteractions
-- config/application.rb
-  - app/interactionsのディレクトリ読み取るようにした
+- app/interactionsのディレクトリを追加
