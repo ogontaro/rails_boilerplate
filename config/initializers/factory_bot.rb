@@ -1,5 +1,4 @@
 # frozen_string_literal: true
 
-RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
-end
+require "factory_bot_rails"
+include FactoryBot::Syntax::Methods
